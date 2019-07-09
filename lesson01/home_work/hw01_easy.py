@@ -9,6 +9,15 @@ __author__ = 'Ваши Ф.И.О.'
 
 # код пишем тут...
 
+userNumber = int(input("Введите произвольное целое число: "))
+while userNumber != 0:
+    num_i = userNumber//(10**(len(str(userNumber))-1))
+    print(num_i)
+    userNumber = userNumber-num_i*(10**(len(str(userNumber))-1))
+
+userNumber = str(input("Введите произвольное целое число: "))
+for i in range (len(userNumber)):
+    print(userNumber[i])
 
 # Задача-2: Исходные значения двух переменных запросить у пользователя.
 # Поменять значения переменных местами. Вывести новые значения на экран.
@@ -18,7 +27,26 @@ __author__ = 'Ваши Ф.И.О.'
 # Не нужно решать задачу так:
 # print("a = ", b, "b = ", a) - это неправильное решение!
 
+userVar_1 = int(input("Введите значение переменной 1: "))
+userVar_2 = int(input("Введите значение переменной 2: "))
+addVar = userVar_1
+userVar_1 = userVar_2
+userVar_2 = addVar
+print ("первая переменная", userVar_1,", вторая переменная", userVar_2)
+
+userVar_1 = userVar_1+userVar_2
+userVar_2 = userVar_1 - userVar_2
+userVar_1 = userVar_1-userVar_2
+print ("первая переменная", userVar_1,", вторая переменная", userVar_2)
+
 
 # Задача-3: Запросите у пользователя его возраст.
 # Если ему есть 18 лет, выведите: "Доступ разрешен",
 # иначе "Извините, пользование данным ресурсом только с 18 лет"
+
+Age = int(input("Введите свой возраст: "))
+if Age >= 18:
+    print("Доступ разрешен")
+else:
+    print("Извините, пользование данным ресурсом только с 18 лет")
+

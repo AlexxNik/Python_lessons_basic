@@ -10,6 +10,21 @@ __author__ = 'Ваши Ф.И.О.'
 # * постарайтесь решить задачу с применением арифметики и цикла while;
 # * при желании и понимании решите задачу с применением цикла for.
 
+MAX = 1
+userNumber = int(input("Введите произвольное целое число: "))
+while userNumber != 0:
+    num_i = userNumber//(10**(len(str(userNumber))-1))
+    userNumber = userNumber-num_i*(10**(len(str(userNumber))-1))
+    if num_i > MAX:
+        MAX = num_i
+print(MAX)
+
+MAX = 1
+userNumber = str(input("Введите произвольное целое число: "))
+for i in range (len(userNumber)):
+    if int(userNumber[i]) > MAX:
+        MAX = int(userNumber[i])
+print(MAX)
 
 # Задача-2: Исходные значения двух переменных запросить у пользователя.
 # Поменять значения переменных местами. Вывести новые значения на экран.
@@ -18,6 +33,15 @@ __author__ = 'Ваши Ф.И.О.'
 # * постарайтесь сделать решение через действия над числами;
 # * при желании и понимании воспользуйтесь синтаксисом кортежей Python.
 
+userVar_1 = int(input("Введите значение переменной 1: "))
+userVar_2 = int(input("Введите значение переменной 2: "))
+userVar_1 = userVar_1+userVar_2
+userVar_2 = userVar_1 - userVar_2
+userVar_1 = userVar_1-userVar_2
+print ("первая переменная", userVar_1,", вторая переменная", userVar_2)
+
+userVar_1, userVar_2 = userVar_2, userVar_1
+print ("первая переменная", userVar_1,", вторая переменная", userVar_2)
 
 # Задача-3: Напишите программу, вычисляющую корни квадратного уравнения вида
 # ax² + bx + c = 0.
@@ -25,3 +49,22 @@ __author__ = 'Ваши Ф.И.О.'
 # Для вычисления квадратного корня воспользуйтесь функцией sqrt() модуля math:
 # import math
 # math.sqrt(4) - вычисляет корень числа 4
+
+
+import math
+print("ax² + bx + c = 0")
+a = int(input("Введите значение a: "))
+b = int(input("Введите значение b: "))
+c = int(input("Введите значение c: "))
+x1 = 0
+x2 = 0
+
+if (b**2 - 4*a*c)>0:
+    x1 = (-b+math.sqrt((b**2-4*a*c)))/2/a
+    x2 = (-b-math.sqrt((b**2-4*a*c)))/2/a
+    print("Корни квадратного уравнения: ", x1, x2)
+elif (b**2 - 4*a*c) == 0:
+    x1 = -b/2/a
+    print("Корни квадратного уравнения: ", x1)
+else:
+    print("Корней на множестве действительных чисел нет")
