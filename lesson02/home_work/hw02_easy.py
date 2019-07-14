@@ -1,3 +1,5 @@
+__author__ = 'Alex Nik'
+
 # Задача-1:
 # Дан список фруктов.
 # Напишите программу, выводящую фрукты в виде нумерованного списка,
@@ -13,13 +15,31 @@
 
 # Подсказка: воспользоваться методом .format()
 
+fruits_list = ["яблоко", "банан", "киви", "арбуз"]
+for i in range(0, len(fruits_list)):
+    print(i + 1, '{:>10}'.format(fruits_list[i]))
 
 # Задача-2:
 # Даны два произвольные списка.
 # Удалите из первого списка элементы, присутствующие во втором списке.
 
+first_list = ["яблоко", "банан", "киви", "арбуз", 15, 15.1545]
+second_list = ["яблоко", "банан", 15]
+first_set = set(first_list)
+second_set = set(second_list)
+first_list = list(first_set.difference(second_set))
+print (first_list)
 
 # Задача-3:
 # Дан произвольный список из целых чисел.
 # Получите НОВЫЙ список из элементов исходного, выполнив следующие условия:
 # если элемент кратен двум, то разделить его на 4, если не кратен, то умножить на два.
+
+number_list = [1, 2, 4, 5, 7, 18, 10, 5]
+new_list = []
+for i in range(0, len(number_list)):
+    if number_list[i]%2 == 0:
+        new_list.append(number_list[i] / 4)
+    else:
+        new_list.append(number_list[i] * 2)
+print(new_list)
