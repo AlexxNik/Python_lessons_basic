@@ -53,13 +53,13 @@ def show_dirs_content():
 def del_dir():
     path = os.getcwd()
     print(f'The current directory: {path}')
-
+    os.chdir(f'{os.path.dirname(path)}')
+    print(os.getcwd())
     try:
         os.rmdir(path)
-    except PermissionError:
-        print(f'The empty folder {path} is not deleted') #не смог побороть эту ошибку...
+    except FileNotFoundError:
+        print(f'The empty folder {path} is not deleted')
     else:
-        os.rmdir(path)
         print(f'The empty folder {path} is deleted\n')
 
 def make_dir():
