@@ -1,3 +1,5 @@
+__author__ = 'Alex Nik'
+
 #!/usr/bin/python3
 
 """
@@ -57,3 +59,109 @@
 модуль random: http://docs.python.org/3/library/random.html
 
 """
+import random
+
+def ran_number():
+    return random.randint(0, 90)
+
+def creat_str(*args):
+    final_str = ['  ']
+    for i in range(1, 10):
+        final_str.append('  ')
+
+    existing_nums = list(args)[0]
+    str_card = []
+    x = ran_number()
+    for i in range(1, 6):
+        while x in existing_nums:
+            x = ran_number()
+        for j in range(0, 10):
+            existing_nums.append((x // 10) * 10 + j)
+        str_card.append(x)
+
+    for j in str_card:
+        for i in range(0, 10):
+            if i == j // 10:
+                final_str[i] = j
+    return final_str
+
+def creat_card():
+    existing_nums = []
+    card = []
+    for i in range(1, 4):
+        existing_nums = []
+        for j in card:
+            for h in j:
+                existing_nums.append(h)
+        card.append(creat_str(existing_nums))
+    return card
+
+def printing(card):
+    for i in card:
+        if i[0] == '  ':
+            print(' '.join(map(str, i)))
+        else:
+            print(' ' + ' '.join(map(str, i)))
+    print('-----------------------------')
+    return
+
+def check_PC(num, card, pc_score):
+    winner = 0
+    for i in range(0, 3):
+        for j in card[i]:
+            if num == j:
+                z = card[i].index(j)
+                card[i][z] = 'xx'
+                pc_score += 1
+    if pc_score == 15:
+        winner = 1
+        print('Победаил РС\n')
+    return  winner
+
+def check(num, card, user_score, user_answer):
+    answer = 'N'
+    winner = 0
+    for i in range(0, 3):
+        for j in card[i]:
+            if num == j:
+                z = card[i].index(j)
+                card[i][z] = 'xx'
+                user_score += 1
+                answer = 'Y'
+    if answer.upper() != user_answer.upper():
+        print('Вы ошиблись, победаил РС\n')
+        winner = 1
+    elif answer == 'Y':
+        print('Выпал номер из карточки\n')
+        if user_score == 15:
+            print('Поздравляем! Вы победили!\n')
+            winner = 1
+    else:
+        print('Вы правы, продолжаем игру!\n')
+    return winner
+
+
+user_card = creat_card()
+pc_card = creat_card()
+
+user_answer_check = ['Y', 'N']
+user_answer = ''
+user_score = 14
+pc_score = 14
+winner = 0
+score = 90
+num = ran_number()
+existing_nums = []
+while winner == 0 and score != 0 and pc_score != 15 and user_score != 15:
+    while num in existing_nums:
+        num = ran_number()
+    existing_nums.append(num)
+    score -= 1
+    print(f'Новый бочонок: {num} (осталось {score})\n------- Ваша карточка -------')
+    printing(user_card)
+    print('---- Карточка компьютера ----')
+    printing(pc_card)
+    user_answer = input('Зачеркнуть цифру? (y/n)')
+    winner = check(num, user_card, user_score, user_answer)
+    if winner != 1:
+        winner = check_PC(num, pc_card, pc_score)
